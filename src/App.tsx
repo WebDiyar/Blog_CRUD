@@ -4,6 +4,7 @@ import { Layout, Menu } from 'antd';
 import BlogListPage from './pages/BlogListPage';
 import BlogPostPage from './pages/BlogPostPage';
 import FakeApiPage from './pages/FakeApiPage';
+import CreatePostPage from './pages/CreatePostPage';
 
 const { Header, Content } = Layout;
 
@@ -13,7 +14,7 @@ const App: React.FC = () => (
       <Header>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']} items={[
           { key: '1', label: <Link to="/">Блог</Link> },
-          { key: '2', label: <Link to="/fake-api">FakeApi</Link> },
+          { key: '2', label: <Link to="/fake-api">FakeApi</Link> }
         ]} />
       </Header>
       <Content style={{ padding: '0 50px', marginTop: 16 }}>
@@ -21,6 +22,7 @@ const App: React.FC = () => (
           <Route path="/" element={<BlogListPage />} />
           <Route path="/post/:id" element={<BlogPostPage />} />
           <Route path="/fake-api" element={<FakeApiPage />} />
+          <Route path="/create" element={<CreatePostPage />} />
         </Routes>
       </Content>
     </Layout>

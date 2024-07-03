@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { List } from 'antd';
+import { List, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { BlogPost } from '../types';
 import { getBlogPosts } from '../api';
@@ -11,7 +11,7 @@ const BlogListPage: React.FC = () => {
     const [total, setTotal] = useState<number>(0);
     const pageSize = 10;
 
-    useEffect(() => {
+    const fetchPosts = (page: number) => {
         setLoading(true);
         setTimeout(() => {
             const { posts, total } = getBlogPosts(page, pageSize);
@@ -19,10 +19,17 @@ const BlogListPage: React.FC = () => {
             setTotal(total);
             setLoading(false);
         }, 500);
+    };
+
+    useEffect(() => {
+        fetchPosts(page);
     }, [page]);
 
     return (
         <div>
+            <Button type="primary" style={{ marginBottom: 16, color: 'white'}}>
+                <Link to="/create">Создать новый пост</Link>
+            </Button>
             <List
                 loading={loading}
                 itemLayout="horizontal"
